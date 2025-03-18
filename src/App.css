@@ -1,38 +1,174 @@
-.App {
-  text-align: center;
+/* App.css */
+:root {
+  --primary-color: #4a90e2;
+  --success-color: #34d399;
+  --danger-color: #ef4444;
+  --text-color: #2d3748;
+  --background-color: #f7fafc;
+  --card-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+body {
+  margin: 0;
+  font-family: 'Segoe UI', system-ui, sans-serif;
+  background-color: var(--background-color);
+  color: var(--text-color);
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.app {
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 0 1rem;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.wallet-section {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.connect-button {
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+.connect-button:hover {
+  opacity: 0.9;
+}
+
+.disconnect-button {
+  background-color: var(--danger-color);
+}
+
+.task-input {
+  background: white;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: var(--card-shadow);
+  margin-bottom: 2rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr auto;
+  gap: 1rem;
+}
+
+.task-input input {
+  padding: 0.8rem;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  font-size: 1rem;
+}
+
+.task-input button {
+  background-color: var(--success-color);
+  color: white;
+  border: none;
+  padding: 0.8rem 1.5rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+.task-input button:hover {
+  opacity: 0.9;
+}
+
+.task-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.task-item {
+  background: white;
+  padding: 1.5rem;
+  margin-bottom: 1rem;
+  border-radius: 8px;
+  box-shadow: var(--card-shadow);
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+  gap: 0.5rem;
+  position: relative;
+}
+
+.task-item h3 {
+  margin: 0;
+  color: var(--primary-color);
+}
+
+.task-status {
+  display: inline-block;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  font-size: 0.9rem;
+}
+
+.task-status.completed {
+  background-color: #dcfce7;
+  color: #166534;
+}
+
+.task-status.pending {
+  background-color: #ffedd5;
+  color: #9a3412;
+}
+
+.task-actions {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.task-actions button {
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+.task-actions button:hover {
+  opacity: 0.8;
+}
+
+.complete-btn {
+  background-color: var(--success-color);
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.edit-btn {
+  background-color: var(--primary-color);
+  color: white;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+.delete-btn {
+  background-color: var(--danger-color);
+  color: white;
+}
+
+.connected-account {
+  background: #e2e8f0;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  font-size: 0.9rem;
+}
+
+@media (max-width: 768px) {
+  .task-input {
+    grid-template-columns: 1fr;
   }
-  to {
-    transform: rotate(360deg);
+  
+  .task-actions {
+    flex-wrap: wrap;
+  }
+  
+  .app {
+    padding: 0 1rem;
   }
 }

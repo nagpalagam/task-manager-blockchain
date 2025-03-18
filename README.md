@@ -1,70 +1,198 @@
-# Getting Started with Create React App
+# Blockchain-Based Task Manager
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Overview
+The Blockchain-Based Task Manager is a decentralized application (dApp) that allows users to create, manage, and track tasks on the Ethereum blockchain. Tasks are stored in a smart contract, ensuring transparency, immutability, and security. The frontend is built with React and interacts with the smart contract using Ethers.js.
 
-## Available Scripts
+**Backend Repository**: The backend code for this project (smart contract) is available [here](https://github.com/nagpalagam/BlockchainTaskManager).
 
-In the project directory, you can run:
+## Features
+- **Add Tasks**: Users can add tasks with a title and description.
+- **Edit Tasks**: Task owners can update task details.
+- **Mark Tasks as Completed**: Task owners can mark tasks as completed.
+- **Delete Tasks**: Task owners can delete their tasks.
+- **View All Tasks**: Users can view all tasks stored on the blockchain.
+- **Access Control**: Only the task owner can modify or delete their tasks.
 
-### `npm start`
+## Technologies Used
+- **Smart Contract**: Solidity, Ethereum, OpenZeppelin
+- **Frontend**: React, Ethers.js
+- **Development Tools**: Hardhat, MetaMask
+- **Deployment**: Sepolia Testnet, Vercel/Netlify (for frontend)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Project Structure
+task-manager/ ├── contracts/ │ └── TaskManager.sol # Smart contract code ├── scripts/ │ └── deploy.js # Deployment script ├── test/ │ └── TaskManager.test.js # Smart contract tests ├── task-manager-frontend/ # React frontend │ ├── src/ │ │ ├── App.js # Main React component │ │ ├── index.js # Entry point │ │ └── artifacts/ # ABI and contract artifacts │ ├── package.json # Frontend dependencies │ └── public/ # Static assets ├── hardhat.config.js # Hardhat configuration ├── .env # Environment variables ├── .gitignore # Git ignore rules └── README.md # Project documentation
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Prerequisites
+Before running the project, ensure you have the following installed:
+- **Node.js** (v18 or higher)
+- **npm** (v9 or higher)
+- **MetaMask** (browser extension)
+- **Git**
 
-### `npm test`
+## Setup Instructions
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## 2. Install Dependencies
 
-### `npm run build`
+### Backend (Smart Contract)
+Setup Instructions
+1. **Clone the Repository**
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+git clone https://github.com/nagpalagam/BlockchainTaskManager.git
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+cd BlockchainTaskManager
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `npm run eject`
+2. **Install Dependencies**
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+Backend (Smart Contract)
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Navigate to the project root:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+cd BlockchainTaskManager
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
 
-## Learn More
+Install dependencies:
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+npm install
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Frontend
 
-### Code Splitting
+Navigate to the frontend folder:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+cd task-manager-frontend
 
-### Analyzing the Bundle Size
+Install dependencies:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+npm install
 
-### Making a Progressive Web App
+3. **Configure Environment Variables**
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+Create a .env file in the project root:
 
-### Advanced Configuration
+touch .env
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+Add the following variables:
 
-### Deployment
+SEPOLIA_URL=https://sepolia.infura.io/v3/YOUR_INFURA_PROJECT_ID
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+PRIVATE_KEY=YOUR_PRIVATE_KEY
+Replace YOUR_INFURA_PROJECT_ID with your Infura project ID.
 
-### `npm run build` fails to minify
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Replace YOUR_PRIVATE_KEY with your wallet’s private key.
+
+4. **Compile the Smart Contract**
+
+Run the following command to compile the smart contract:
+
+
+npx hardhat compile
+
+5. **Deploy the Smart Contract**
+
+Deploy the contract to the Sepolia Testnet:
+
+npx hardhat run scripts/deploy.js --network sepolia
+
+Save the contract address from the console output for the frontend.
+
+6. **Run the Frontend**
+
+Navigate to the frontend folder:
+
+cd task-manager-frontend
+
+Update the contract address in App.js:
+
+
+const contractAddress = "YOUR_DEPLOYED_CONTRACT_ADDRESS";
+
+Start the React app:
+
+npm start
+
+Usage
+
+Connect MetaMask:
+
+Open the app in your browser.
+
+Connect your MetaMask wallet to the Sepolia Testnet.
+
+Add a Task:
+
+Enter a title and description, then click "Add Task."
+
+Edit a Task:
+
+Click the "Edit" button next to a task and update the details.
+
+Mark a Task as Completed:
+
+Click the "Complete" button next to a task.
+
+Delete a Task:
+
+Click the "Delete" button next to a task.
+
+View All Tasks:
+
+All tasks will be displayed on the homepage.
+
+Testing
+
+To run the smart contract tests
+
+npx hardhat test
+
+Deployment
+
+Smart Contract
+
+The contract is deployed on the Sepolia Testnet. Verify it on 
+
+Sepolia Etherscan.
+
+Frontend
+
+Deploy to Vercel:
+
+npm install -g vercel
+
+vercel
+
+Or drag-and-drop the task-manager-frontend folder to Netlify.
+
+
+Create a branch:
+
+
+
+git checkout -b feature/your-feature
+
+Commit changes:
+
+
+git commit -m "Add your feature"
+
+Push and open a pull request.
+
+License
+
+MIT License. See LICENSE.
+
+
+**Contact**
+
+**Name: Agam Nagpal**
+
+Email: nagpalagam2003@gmail.com
+
+GitHub: nagpalagam
+
+
+**Acknowledgments**
+OpenZeppelin, Hardhat, and Ethers.js for tools and libraries.
+
+
+
